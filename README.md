@@ -2,6 +2,8 @@
 
 This project is a static web application that scrapes, stores, and interactively displays problem statements from the **Smart India Hackathon (SIH)** website. It uses a Puppeteer scraper to generate a JavaScript dataset and a pure vanilla JS frontend for easy exploration.
 
+🔗 **Live Demo:** [https://siddiq2772.github.io/scapper-with-ui/](https://siddiq2772.github.io/scapper-with-ui/)
+
 ## 🚀 Features
 
 -   **Automated Scraper**: Extracts detailed data including Problem ID, Organization, Category, Theme, Submission Count, Deadline, and Descriptions.
