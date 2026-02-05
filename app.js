@@ -22,10 +22,26 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    // Close on Escape key
+    // Keydown events
     document.addEventListener('keydown', (e) => {
+        // Close modal on Escape
         if (e.key === 'Escape' && modal.classList.contains('open')) {
             closeModal();
+            return;
+        }
+
+        // Navigate back on Backspace
+        if (e.key === 'Backspace' && !modal.classList.contains('open')) {
+            // Prevent browser back
+            e.preventDefault();
+
+            if (currentView === 'themes') {
+                loadCategories();
+            } else if (currentView === 'organizations') {
+                loadThemes(selectedCategory);
+            } else if (currentView === 'problems') {
+                loadOrganizations(selectedCategory, selectedTheme);
+            }
         }
     });
 });
