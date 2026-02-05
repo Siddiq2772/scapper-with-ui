@@ -145,8 +145,18 @@ function renderCards(items, type) {
     app.innerHTML = '';
 
     if (items.length === 0) {
+        app.classList.remove('centered-grid');
+        app.classList.add('grid-container');
         app.innerHTML = '<p>No items found.</p>';
         return;
+    }
+
+    if (items.length < 3) {
+        app.classList.remove('grid-container');
+        app.classList.add('centered-grid');
+    } else {
+        app.classList.remove('centered-grid');
+        app.classList.add('grid-container');
     }
 
     items.forEach((item, index) => {
@@ -178,8 +188,18 @@ function renderProblems(items) {
     app.innerHTML = '';
 
     if (items.length === 0) {
+        app.classList.remove('centered-grid');
+        app.classList.add('grid-container');
         app.innerHTML = '<p>No problem statements found.</p>';
         return;
+    }
+
+    if (items.length < 3) {
+        app.classList.remove('grid-container');
+        app.classList.add('centered-grid');
+    } else {
+        app.classList.remove('centered-grid');
+        app.classList.add('grid-container');
     }
 
     items.forEach((item, index) => {

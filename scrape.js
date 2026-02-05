@@ -9,7 +9,7 @@ async function scrapeSIHData() {
     const outputPath = path.resolve(__dirname, 'public', 'data.json');
 
     const browser = await puppeteer.launch({
-        headless: true,
+        headless: true,//if false then browser will open
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
     const page = await browser.newPage();
@@ -68,7 +68,7 @@ async function scrapeSIHData() {
                         let description = '';
                         const descContainer = row.querySelector('td:nth-child(3) .modal-body');
                         if (descContainer) {
-                            description = descContainer.innerHTML.trim();
+                            description = descContainer.innerHTML.trim();// it is fetching html not the text
                         }
 
                         return { id, organization: org, category, description, theme, submitted_idea_count: submissionCount, deadline };

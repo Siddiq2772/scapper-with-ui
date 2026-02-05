@@ -137,6 +137,19 @@ h1 {
     perspective: 1000px;
 }
 
+.centered-grid {
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.centered-grid .card {
+    width: 300px;
+    flex: 0 0 auto;
+}
+
 /* Cards */
 .card {
     background: var(--card-bg);
@@ -402,6 +415,7 @@ h1 {
     background-color: rgba(255, 255, 255, 0.02);
 }
 
-.modal-text b, .modal-text strong {
+.modal-text b,
+.modal-text strong {
     color: var(--accent-color);
 }
