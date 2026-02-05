@@ -145,18 +145,15 @@ function renderCards(items, type) {
     app.innerHTML = '';
 
     if (items.length === 0) {
-        app.classList.remove('centered-grid');
-        app.classList.add('grid-container');
+        app.classList.remove('centered-view');
         app.innerHTML = '<p>No items found.</p>';
         return;
     }
 
     if (items.length < 3) {
-        app.classList.remove('grid-container');
-        app.classList.add('centered-grid');
+        app.classList.add('centered-view');
     } else {
-        app.classList.remove('centered-grid');
-        app.classList.add('grid-container');
+        app.classList.remove('centered-view');
     }
 
     items.forEach((item, index) => {
@@ -188,18 +185,15 @@ function renderProblems(items) {
     app.innerHTML = '';
 
     if (items.length === 0) {
-        app.classList.remove('centered-grid');
-        app.classList.add('grid-container');
+        app.classList.remove('centered-view');
         app.innerHTML = '<p>No problem statements found.</p>';
         return;
     }
 
     if (items.length < 3) {
-        app.classList.remove('grid-container');
-        app.classList.add('centered-grid');
+        app.classList.add('centered-view');
     } else {
-        app.classList.remove('centered-grid');
-        app.classList.add('grid-container');
+        app.classList.remove('centered-view');
     }
 
     items.forEach((item, index) => {

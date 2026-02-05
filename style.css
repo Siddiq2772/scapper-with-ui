@@ -137,18 +137,11 @@ h1 {
     perspective: 1000px;
 }
 
-.centered-grid {
-    perspective: 1000px;
-    display: flex;
+.grid-container.centered-view {
+    grid-template-columns: repeat(auto-fit, 300px);
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 1.5rem;
 }
 
-.centered-grid .card {
-    width: 300px;
-    flex: 0 0 auto;
-}
 
 /* Cards */
 .card {
