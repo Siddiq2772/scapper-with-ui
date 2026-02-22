@@ -288,7 +288,20 @@ function openModal(item) {
     document.getElementById('modal-theme').textContent = item.theme || 'N/A';
     document.getElementById('modal-subs').textContent = item.submitted_idea_count || 'N/A';
     document.getElementById('modal-deadline').textContent = item.deadline || 'N/A';
-    document.getElementById('modal-desc').innerHTML = item.description;
+    let formattedDesc = item.description;
+
+    // Sometimes scraped text lacks bold tags. We can bold common headings.
+    const headingsToBold = [
+        "Description:", "Challenge:", "Usage:", "Users:", "Available Solutions \\(if Yes, reasons for not using them\\):", "Desired Outcome:",
+        "Problem Description", "Background", "Expected Solution", "Expected Outcomes", "Impact \/ Why this problem needs to be solved", "Impact", "Relevant Stakeholders \/ Beneficiaries", "Supporting Data"
+    ];
+
+    headingsToBold.forEach(heading => {
+        const regex = new RegExp(`(^|\\n|<br>|\\s)(?:<b.*?>)?(${heading})(?:<\\/b>)?(?!<\\/b>)`, 'gi');
+        formattedDesc = formattedDesc.replace(regex, '<br><br><b style="color: var(--accent-color); font-size: 1.1em; display: inline-block; margin-top: 0px; margin-bottom: 0px;">$2</b>');
+    });
+
+    document.getElementById('modal-desc').innerHTML = formattedDesc;
 
     modal.classList.add('open');
     document.body.style.overflow = 'hidden'; // Prevent background scrolling

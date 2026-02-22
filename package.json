@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "scrape": "node scrape.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "puppeteer": "^24.35.0"
+    "express": "^5.2.1",
+    "puppeteer": "^24.35.0",
+    "sqlite3": "^5.1.7"
   }
 }
