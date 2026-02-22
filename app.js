@@ -3,6 +3,7 @@ const loading = document.getElementById('loading');
 const breadcrumbs = document.getElementById('breadcrumbs');
 const modal = document.getElementById('detail-modal');
 const modalBody = document.getElementById('modal-body');
+const cardCountElement = document.getElementById('card-count');
 
 // State
 let currentView = 'categories';
@@ -163,8 +164,11 @@ function renderCards(items, type) {
     if (items.length === 0) {
         app.classList.remove('centered-view');
         app.innerHTML = '<p>No items found.</p>';
+        updateCardCount(0);
         return;
     }
+
+    updateCardCount(items.length);
 
     if (items.length < 3) {
         app.classList.add('centered-view');
@@ -203,8 +207,11 @@ function renderProblems(items) {
     if (items.length === 0) {
         app.classList.remove('centered-view');
         app.innerHTML = '<p>No problem statements found.</p>';
+        updateCardCount(0);
         return;
     }
+
+    updateCardCount(items.length);
 
     if (items.length < 3) {
         app.classList.add('centered-view');
@@ -303,4 +310,20 @@ function openModal(item) {
 function closeModal() {
     modal.classList.remove('open');
     document.body.style.overflow = 'auto'; // Restore scrolling
+}
+
+function updateCardCount(count) {
+    if (cardCountElement) {
+        if (currentView === 'categories' && allData.length > 0) {
+            // Check if we have the allData loaded, to show total problems
+            let totalProblems = allData.length;
+            cardCountElement.textContent = `Total Problems: ${totalProblems}`;
+            cardCountElement.style.display = 'inline-block';
+        } else if (count > 0) {
+            cardCountElement.textContent = ` ${count} ${count === 1 ? 'card' : 'cards'}`;
+            cardCountElement.style.display = 'inline-block';
+        } else {
+            cardCountElement.style.display = 'none';
+        }
+    }
 }

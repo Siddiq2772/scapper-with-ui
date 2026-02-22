@@ -129,6 +129,21 @@ h1 {
     font-weight: 500;
 }
 
+/* Card Count */
+.card-count {
+    margin-top: 1.5rem;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 2rem;
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
 /* Grid Layout */
 .grid-container {
     display: grid;
