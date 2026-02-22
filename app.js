@@ -186,6 +186,20 @@ function renderCards(items, type) {
 
         card.querySelector('.card-title').textContent = item;
 
+        let count = 0;
+        if (type === 'category') {
+            count = allData.filter(d => d.category === item).length;
+        } else if (type === 'theme') {
+            count = allData.filter(d => d.category === selectedCategory && d.theme === item).length;
+        } else if (type === 'organization') {
+            count = allData.filter(d => d.category === selectedCategory && d.theme === selectedTheme && d.organization === item).length;
+        }
+
+        const badge = card.querySelector('.card-count-badge');
+        if (badge) {
+            badge.textContent = `${count} problem${count === 1 ? '' : 's'}`;
+        }
+
         card.onclick = () => {
             if (type === 'category') loadThemes(item);
             else if (type === 'theme') loadOrganizations(selectedCategory, item);
@@ -293,7 +307,12 @@ function updateCardCount(count) {
             cardCountElement.textContent = `Total Problems: ${totalProblems}`;
             cardCountElement.style.display = 'inline-block';
         } else if (count > 0) {
-            cardCountElement.textContent = ` ${count} ${count === 1 ? 'card' : 'cards'}`;
+            let itemName = 'card';
+            if (currentView === 'themes') itemName = count === 1 ? 'theme' : 'themes';
+            else if (currentView === 'organizations') itemName = count === 1 ? 'organization' : 'organizations';
+            else if (currentView === 'problems') itemName = count === 1 ? 'problem' : 'problems';
+
+            cardCountElement.textContent = ` ${count} ${itemName}`;
             cardCountElement.style.display = 'inline-block';
         } else {
             cardCountElement.style.display = 'none';

@@ -142,6 +142,16 @@ h1 {
     gap: 0.5rem;
 }
 
+.card-count-badge {
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-color);
+    padding: 0.2rem 0.6rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
 /* Problem Statement Specifics */
 .label {
     display: inline-block;
