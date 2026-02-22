@@ -10,16 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 
 <body>
-    <div class="background-gradients">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-    </div>
-
     <div class="container">
         <header>
             <h1>Smart <span class="accent">Scrapper</span></h1>
@@ -41,11 +34,58 @@
             <div class="modal-content">
                 <button class="modal-close" onclick="closeModal()">&times;</button>
                 <div id="modal-body">
-                    <!-- Dynamic Content -->
+                    <div class="modal-header">
+                        <span id="modal-id" class="modal-label"></span>
+                        <div id="modal-org" class="modal-title"></div>
+                        <div id="modal-cat" style="color: var(--text-secondary); margin-top: 0.5rem;"></div>
+                    </div>
+
+                    <div class="modal-section">
+                        <div class="modal-section-title">THEME</div>
+                        <div id="modal-theme" class="modal-text"></div>
+                    </div>
+
+                    <div class="modal-section">
+                        <div class="modal-section-title">SUBMISSIONS</div>
+                        <div id="modal-subs" class="modal-text"></div>
+                    </div>
+
+                    <div class="modal-section">
+                        <div class="modal-section-title">DEADLINE</div>
+                        <div id="modal-deadline" class="modal-text"></div>
+                    </div>
+
+                    <div class="modal-section">
+                        <div class="modal-section-title">PROBLEM STATEMENT</div>
+                        <div id="modal-desc" class="modal-text"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Templates -->
+    <template id="category-card-template">
+        <div class="card">
+            <div class="card-title"></div>
+            <div class="card-meta">
+                <span>Click to explore</span>
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M5 12h14m-7-7 7 7-7 7" />
+                </svg>
+            </div>
+        </div>
+    </template>
+
+    <template id="problem-card-template">
+        <div class="card" style="cursor: pointer;">
+            <div>
+                <span class="label"></span>
+                <div class="card-title" style="font-size: 1.15rem; color: var(--text-primary);"></div>
+            </div>
+            <div class="problem-desc"></div>
+        </div>
+    </template>
 
     <script src="data.js"></script>
     <script src="app.js"></script>

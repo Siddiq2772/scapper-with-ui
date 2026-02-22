@@ -176,20 +176,15 @@ function renderCards(items, type) {
         app.classList.remove('centered-view');
     }
 
-    items.forEach((item, index) => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        // Add staggered animation delay
-        card.style.animation = `fadeInDown 0.5s ease-out ${index * 0.05}s forwards`;
-        card.style.opacity = '0'; // Start invisible for animation
+    const template = document.getElementById('category-card-template');
 
-        card.innerHTML = `
-            <div class="card-title">${item}</div>
-            <div class="card-meta">
-                <span>Click to explore</span>
-                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
-            </div>
-        `;
+    items.forEach((item, index) => {
+        const clone = template.content.cloneNode(true);
+        const card = clone.querySelector('.card');
+        card.style.animation = `fadeInDown 0.4s ease-out ${index * 0.05}s forwards`;
+        card.style.opacity = '0';
+
+        card.querySelector('.card-title').textContent = item;
 
         card.onclick = () => {
             if (type === 'category') loadThemes(item);
@@ -197,7 +192,7 @@ function renderCards(items, type) {
             else if (type === 'organization') loadProblems(item);
         };
 
-        app.appendChild(card);
+        app.appendChild(clone);
     });
 }
 
@@ -218,6 +213,8 @@ function renderProblems(items) {
     } else {
         app.classList.remove('centered-view');
     }
+
+    const template = document.getElementById('problem-card-template');
 
     items.forEach((item, index) => {
         // Parse the HTML description to extract specific fields for the card preview
@@ -253,56 +250,32 @@ function renderProblems(items) {
             shortDesc = shortDesc.substring(0, 150) + '...';
         }
 
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.style.cursor = 'pointer';
-        card.style.animation = `fadeInDown 0.5s ease-out ${index * 0.05}s forwards`;
+        const clone = template.content.cloneNode(true);
+        const card = clone.querySelector('.card');
+        card.style.animation = `fadeInDown 0.4s ease-out ${index * 0.05}s forwards`;
         card.style.opacity = '0';
 
-        card.innerHTML = `
-            <div>
-                <span class="label">ID: ${item.id}</span>
-                <div class="card-title" style="font-size: 1.15rem; color: var(--text-primary);">${title}</div>
-            </div>
-            <div class="problem-desc">${shortDesc}</div>
-        `;
+        card.querySelector('.label').textContent = `ID: ${item.id}`;
+        card.querySelector('.card-title').textContent = title;
+        card.querySelector('.problem-desc').textContent = shortDesc;
 
         card.onclick = () => {
             openModal(item);
         };
 
-        app.appendChild(card);
+        app.appendChild(clone);
     });
 }
 
 function openModal(item) {
-    modalBody.innerHTML = `
-        <div class="modal-header">
-            <span class="modal-label">ID: ${item.id}</span>
-            <div class="modal-title">${item.organization}</div>
-            <div style="color: var(--text-secondary); margin-top: 0.5rem;">${item.category}</div>
-        </div>
-        
-        <div class="modal-section">
-            <div class="modal-section-title">THEME</div>
-            <div class="modal-text">${item.theme || 'N/A'}</div>
-        </div>
+    document.getElementById('modal-id').textContent = `ID: ${item.id}`;
+    document.getElementById('modal-org').textContent = item.organization;
+    document.getElementById('modal-cat').textContent = item.category;
+    document.getElementById('modal-theme').textContent = item.theme || 'N/A';
+    document.getElementById('modal-subs').textContent = item.submitted_idea_count || 'N/A';
+    document.getElementById('modal-deadline').textContent = item.deadline || 'N/A';
+    document.getElementById('modal-desc').innerHTML = item.description;
 
-        <div class="modal-section">
-            <div class="modal-section-title">SUBMISSIONS</div>
-            <div class="modal-text">${item.submitted_idea_count || 'N/A'}</div>
-        </div>
-
-        <div class="modal-section">
-            <div class="modal-section-title">DEADLINE</div>
-            <div class="modal-text">${item.deadline || 'N/A'}</div>
-        </div>
-
-        <div class="modal-section">
-            <div class="modal-section-title">PROBLEM STATEMENT</div>
-            <div class="modal-text">${item.description}</div>
-        </div>
-    `;
     modal.classList.add('open');
     document.body.style.overflow = 'hidden'; // Prevent background scrolling
 }
