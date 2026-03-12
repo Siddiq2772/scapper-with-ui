@@ -1,4 +1,4 @@
-# SIH 2025 Problem Statement Explorer
+# SmartScapper
 
 This project is a static web application that scrapes, stores, and interactively displays problem statements from the **Smart India Hackathon (SIH)** website. It uses a Puppeteer scraper to generate a JavaScript dataset and a pure vanilla JS frontend for easy exploration.
 
@@ -57,3 +57,4 @@ npm run scrape
 
 ## 📝 License
 This project is for educational purposes. Data is sourced from the official SIH website.
+
